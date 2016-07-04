@@ -218,7 +218,7 @@ function build_cmake
     CMAKE_TARBALL="$BASE/tarballs/cmake-${CMAKE_VER}-${CMAKE_MACHINE}.tar.gz"
     CMAKE_SRCBALL="$BASE/tarballs/cmake-${CMAKE_VER}.tar.gz"
     if [ ! -f "${CMAKE_TARBALL}" ] && [ ! -f "${CMAKE_SRCBALL}" ] ; then
-        wget http://www.cmake.org/files/v2.8/cmake-${CMAKE_VER}-${CMAKE_MACHINE}.tar.gz -O ${CMAKE_TARBALL} || true
+        wget --no-check-certificate http://www.cmake.org/files/v2.8/cmake-${CMAKE_VER}-${CMAKE_MACHINE}.tar.gz -O ${CMAKE_TARBALL} || true
         if [ ! -s ${CMAKE_TARBALL} ] ; then
             # no pre-built binary for this machine (e.g. amd64); force source build
             rm -f ${CMAKE_TARBALL}
@@ -229,7 +229,7 @@ function build_cmake
         tar zxf ${CMAKE_TARBALL} --strip-components=1
     else
         if [ ! -f "${CMAKE_SRCBALL}" ] ; then
-            wget http://www.cmake.org/files/v2.8/cmake-${CMAKE_VER}.tar.gz -O ${CMAKE_SRCBALL}
+            wget --no-check-certificate http://www.cmake.org/files/v2.8/cmake-${CMAKE_VER}.tar.gz -O ${CMAKE_SRCBALL}
         fi
         # no pre-built binary for this machine; build from source instead
         tar zxf ${CMAKE_SRCBALL} --strip-components=1
@@ -1214,7 +1214,7 @@ function build_leveldb
     LIB_TARBALL="$BASE/tarballs/${LIB_NAME}-${LIB_VER}.${LIB_REL}.tar.gz"
 
     [ ! -f "${LIB_TARBALL}" ] && {
-        wget http://${LIB_NAME}.googlecode.com/files/${LIB_NAME}-${LIB_VER}.${LIB_REL}.tar.gz -O ${LIB_TARBALL} || {
+        wget --no-check-certificate http://${LIB_NAME}.googlecode.com/files/${LIB_NAME}-${LIB_VER}.${LIB_REL}.tar.gz -O ${LIB_TARBALL} || {
             echo "Unable to download leveldb"
             exit 1
         }
